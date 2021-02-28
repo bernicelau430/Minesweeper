@@ -2,6 +2,7 @@ import de.bezier.guido.*;
 int NUM_ROWS = 20; 
 int NUM_COLS = 20;
 int NUM_MINES = 30;
+boolean isLost = false;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> mines = new ArrayList <MSButton>(); //ArrayList of just the minesweeper buttons that are mined
 
@@ -69,7 +70,7 @@ public void displayLosingMessage(){
   buttons[NUM_ROWS/2][NUM_COLS/2 + 1].setLabel("S");
   buttons[NUM_ROWS/2][NUM_COLS/2 + 2].setLabel("E");
   buttons[NUM_ROWS/2][NUM_COLS/2 + 3].setLabel("!");
-  noLoop();
+  isLost = true;
 }
 public void displayWinningMessage() {
   buttons[NUM_ROWS/2][NUM_COLS/2 - 5].setLabel("Y");
@@ -80,7 +81,7 @@ public void displayWinningMessage() {
   buttons[NUM_ROWS/2][NUM_COLS/2].setLabel("I");
   buttons[NUM_ROWS/2][NUM_COLS/2 + 1].setLabel("N");
   buttons[NUM_ROWS/2][NUM_COLS/2 + 2].setLabel("!");
-  noLoop();
+  isLost = true;
 }
 public boolean isValid(int r, int c) {
   if (r < NUM_ROWS && r >= 0 && c < NUM_COLS && c >= 0) {
@@ -154,6 +155,7 @@ public class MSButton {
     // called by manager
     public void mousePressed () 
     {
+      if (!isLost) {
         clicked = true;
         if (mouseButton == RIGHT) {
           clicked = false;
@@ -196,6 +198,7 @@ public class MSButton {
              buttons[this.myRow - 1][this.myCol - 1].mousePressed(); //diagonal-left-up
            }
         }
+      }  
     }
     public void draw () 
     {    
