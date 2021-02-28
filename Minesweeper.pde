@@ -1,7 +1,7 @@
 import de.bezier.guido.*;
-int NUM_ROWS = 5; 
-int NUM_COLS = 5;
-int NUM_MINES = 2;
+int NUM_ROWS = 20; 
+int NUM_COLS = 20;
+int NUM_MINES = 30;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> mines = new ArrayList <MSButton>(); //ArrayList of just the minesweeper buttons that are mined
 
@@ -60,11 +60,26 @@ public void displayLosingMessage(){
       }
     }
   }
-  buttons[NUM_ROWS/2][NUM_COLS/2].setLabel("You Lose");
+  buttons[NUM_ROWS/2][NUM_COLS/2 - 5].setLabel("Y");
+  buttons[NUM_ROWS/2][NUM_COLS/2 - 4].setLabel("O");
+  buttons[NUM_ROWS/2][NUM_COLS/2 - 3].setLabel("U");
+  buttons[NUM_ROWS/2][NUM_COLS/2 - 2].setLabel(" ");
+  buttons[NUM_ROWS/2][NUM_COLS/2 - 1].setLabel("L");
+  buttons[NUM_ROWS/2][NUM_COLS/2].setLabel("O");
+  buttons[NUM_ROWS/2][NUM_COLS/2 + 1].setLabel("S");
+  buttons[NUM_ROWS/2][NUM_COLS/2 + 2].setLabel("E");
+  buttons[NUM_ROWS/2][NUM_COLS/2 + 3].setLabel("!");
   noLoop();
 }
 public void displayWinningMessage() {
-  buttons[NUM_ROWS/2][NUM_COLS/2].setLabel("You Win!");
+  buttons[NUM_ROWS/2][NUM_COLS/2 - 5].setLabel("Y");
+  buttons[NUM_ROWS/2][NUM_COLS/2 - 4].setLabel("O");
+  buttons[NUM_ROWS/2][NUM_COLS/2 - 3].setLabel("U");
+  buttons[NUM_ROWS/2][NUM_COLS/2 - 2].setLabel(" ");
+  buttons[NUM_ROWS/2][NUM_COLS/2 - 1].setLabel("W");
+  buttons[NUM_ROWS/2][NUM_COLS/2].setLabel("I");
+  buttons[NUM_ROWS/2][NUM_COLS/2 + 1].setLabel("N");
+  buttons[NUM_ROWS/2][NUM_COLS/2 + 2].setLabel("!");
   noLoop();
 }
 public boolean isValid(int r, int c) {
