@@ -56,17 +56,16 @@ public void displayLosingMessage(){
   for (int row = 0; row < NUM_ROWS; row++) {
     for (int col = 0; col < NUM_COLS; col++) {
       if (mines.contains(buttons[row][col])) {
-        buttons[row][col].setLabel("You lose, try again!");
+        buttons[row][col].clicked = true;
       }
     }
   }
+  buttons[NUM_ROWS/2][NUM_COLS/2].setLabel("You Lose");
+  noLoop();
 }
 public void displayWinningMessage() {
-  for (int row = 0; row < NUM_ROWS; row++) {
-    for (int col = 0; col < NUM_COLS; col++) {
-      buttons[row][col].setLabel("You Win!");
-    }
-  }
+  buttons[NUM_ROWS/2][NUM_COLS/2].setLabel("You Win!");
+  noLoop();
 }
 public boolean isValid(int r, int c) {
   if (r < NUM_ROWS && r >= 0 && c < NUM_COLS && c >= 0) {
@@ -142,18 +141,18 @@ public class MSButton {
     {
         clicked = true;
         if (mouseButton == RIGHT) {
+          clicked = false;
           if (flagged == true) {
             flagged = false;
           }
           else {
             flagged = true;
-            clicked = false;
           }
         } 
         else if (mines.contains(this)) {
             displayLosingMessage();
         } 
-        else if (countMines(this.myRow, this.myCol) >= 0) {
+        else if (countMines(this.myRow, this.myCol) > 0) {
             this.setLabel(countMines(this.myRow, this.myCol));
         }
         else {
